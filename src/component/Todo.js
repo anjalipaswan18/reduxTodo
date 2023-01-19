@@ -25,7 +25,10 @@ function Todo() {
             ></input>
             <button
               className="todolist-add-btn"
-              onClick={() => dispatch(addTodo(inputData), setInputData(""))}
+              onClick={() => {
+                dispatch(addTodo(inputData));
+                setInputData("");
+              }}
             >
               <AiOutlinePlusCircle />
             </button>
@@ -36,15 +39,11 @@ function Todo() {
                 <div className="todolist-each-items" key={elem.id}>
                   <h3>{elem.data}</h3>
                   <div className="todolist-btn">
-                    <AiFillDelete />
-
-                    <i
+                    <AiFillDelete
                       className="todolist-delete-btn"
                       title="delete"
                       onClick={() => dispatch(deleteTodo(elem.id))}
-                    >
-                      {/* <AiFillDelete /> */}
-                    </i>
+                    />
                   </div>
                 </div>
               );
