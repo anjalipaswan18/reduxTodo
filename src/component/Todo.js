@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo, deleteTodo } from "../actions/index";
+import { addTodo, deleteTodo, editTodo } from "../actions/index";
 import "./todo.css";
 import { AiFillDelete } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { MdModeEdit } from "react-icons/md";
 
 function Todo() {
   const [inputData, setInputData] = useState("");
@@ -43,6 +44,13 @@ function Todo() {
                       className="todolist-delete-btn"
                       title="delete"
                       onClick={() => dispatch(deleteTodo(elem.id))}
+                    />
+                  </div>
+                  <div className="todolist-btn">
+                    <MdModeEdit
+                      className="todolist-edit-butn"
+                      title="edit"
+                      onClick={() => dispatch(editTodo(elem.id))}
                     />
                   </div>
                 </div>

@@ -13,8 +13,12 @@ export const deleteTodo = (id) => {
     payload: id,
   };
 };
-export const removeTodo = () => {
+export const editTodo = (id, newData) => {
   return {
-    type: "REMOVE_TODO",
+    type: "EDIT_TODO",
+    payload: {
+      editId: id,
+      newData: newData
+    },
   };
 };
