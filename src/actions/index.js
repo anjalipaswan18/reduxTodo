@@ -4,6 +4,7 @@ export const addTodo = (data) => {
     payload: {
       id: new Date().getTime().toString(),
       data: data,
+         
     },
   };
 };
@@ -18,7 +19,7 @@ export const editTodo = (id, newData) => {
     type: "EDIT_TODO",
     payload: {
       editId: id,
-      newData: newData
+      newData: newData,
     },
   };
 };

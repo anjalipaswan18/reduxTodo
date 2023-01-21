@@ -21,14 +21,16 @@ const todoReducers = (state = initialData, action) => {
         ...state,
         List: newList,
       };
+
     case "EDIT_TODO":
       const { editId, newData } = action.payload;
+      console.log(action.payload);
+      console.log(state.List);
       const updatedList = state.List.map((elem) => {
-        console.log(editId);
         if (elem.id === editId) {
           return {
             id: editId,
-            newData: newData,
+            data: newData,
           };
         } else {
           return elem;

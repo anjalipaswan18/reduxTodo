@@ -3,14 +3,31 @@ import { useSelector, useDispatch } from "react-redux";
 import { addTodo, deleteTodo, editTodo } from "../actions/index";
 import "./todo.css";
 import { AiFillDelete } from "react-icons/ai";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 import { MdModeEdit } from "react-icons/md";
-
 function Todo() {
   const [inputData, setInputData] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
   const List = useSelector((state) => state.todoReducers.List);
   const dispatch = useDispatch();
-
+  const [error, setError] = useState(false);
+  const AddClick = () => {
+    if (inputData === "newData") {
+      setError(true);
+    } else {
+      setError(false);
+      if (selectedId) {
+        dispatch(editTodo(selectedId, inputData));
+        setSelectedId();
+      } else {
+        dispatch(addTodo(inputData));
+      }
+      setInputData("");
+    }
+  };
+  const EditClick = (id, newdata) => {
+    setSelectedId(id);
+    setInputData(newdata);
+  };
   return (
     <>
       <div className="todolist-main-container">
@@ -19,20 +36,19 @@ function Todo() {
           <div className="todolist-add-items">
             <input
               type="text"
-              className="todolist-placeholder"
+              className={`todolist-placeholder ${error ? "error" : ""}`}
               placeholder="✍️add items...... "
               value={inputData}
               onChange={(event) => setInputData(event.target.value)}
             ></input>
-            <button
-              className="todolist-add-btn"
-              onClick={() => {
-                dispatch(addTodo(inputData));
-                setInputData("");
-              }}
-            >
-              <AiOutlinePlusCircle />
+            <button className="todolist-add-btn" onClick={AddClick}>
+              {selectedId ? "Save" : "Add"}
             </button>
+            {error && (
+              <div className="error-message">
+                Please enter a task before adding
+              </div>
+            )}
           </div>
           <div className="todolist-show-items">
             {List.map((elem) => {
@@ -50,7 +66,7 @@ function Todo() {
                     <MdModeEdit
                       className="todolist-edit-butn"
                       title="edit"
-                      onClick={() => dispatch(editTodo(elem.id))}
+                      onClick={() => EditClick(elem.id, elem.data)}
                     />
                   </div>
                 </div>
