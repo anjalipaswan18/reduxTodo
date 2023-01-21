@@ -1,0 +1,34 @@
+.todolist-main-container {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: pink;
+  height: 100vh;
+}
+.todolist-placeholder {
+  width: 25rem;
+  height: 1.8rem;
+}
+.todolist-heading {
+  color: white;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+.todolist-add-btn {
+  height: 2rem;
+  border: none;
+  background-color: none;
+}
+.todolist-add-btn:hover {
+  background-color: darkgreen;
+}
+.todolist-each-items {
+  display: flex;
+  background-color: white;
+  height: 2rem;
+  margin-top: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.2rem;
+}
